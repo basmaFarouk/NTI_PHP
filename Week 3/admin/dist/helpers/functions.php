@@ -53,20 +53,30 @@
 
 
 
+        // case 'image':
+        //     # Case 
+
+        //     $typesInfo  =  explode('/', $input['image']['type']);   // convert string to array ... 
+        //     $extension  =  strtolower(end($typesInfo));      // get last element in array .... 
+
+        //     $allowedExtension = ['png', 'jpeg', 'jpg'];   // allowed Extension    // PNG JPG 
+
+        //     if (!in_array($extension, $allowedExtension)) {
+
+        //         $status = false;
+        //     }
+
+        //     break; 
+
         case 'image':
-            # Case 
-
-            $typesInfo  =  explode('/', $input['image']['type']);   // convert string to array ... 
-            $extension  =  strtolower(end($typesInfo));      // get last element in array .... 
-
-            $allowedExtension = ['png', 'jpeg', 'jpg'];   // allowed Extension    // PNG JPG 
-
-            if (!in_array($extension, $allowedExtension)) {
-
+            $typesInfo = explode('/',$input['image']['type']);
+            $extension = strtolower(end($typesInfo));
+            $allowedExtension = ['png','jpg','jpeg'];
+            if(!in_array($extension,$allowedExtension)){
                 $status = false;
             }
 
-            break; 
+            break;
 
 
 
@@ -102,17 +112,32 @@
 }
 
 
-function Messages($text){
+function Messages($text=null){
 
     if(isset($_SESSION['Message'])){
         foreach($_SESSION['Message'] as $key => $value ){
-            echo '<li style="color: red;"> * '.$key."  ".$value.'</li>'."<br>";
+            echo "<br>".'<p style="color: red;"> * '.$key."  ".$value.'</p>'.'<br>';
         }
         unset($_SESSION['Message']);
     }else{
         echo '<li class="breadcrumb-item active">'.$text.'</li>';
     }
 
+}
+
+function removeFile($file){
+    if(unlink('uploads/'.$file)){
+        $status = true;
+    }else{
+        $status =false;
+    }
+
+    return $status;
+}
+
+function url($input){
+
+    return 'http://'.$_SERVER['HTTP_HOST'].'/nti/Week 3/Admin/dist/'.$input; 
 }
 
 #################################################################################

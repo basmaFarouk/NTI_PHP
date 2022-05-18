@@ -1,4 +1,7 @@
 <?php
+require './helpers/dbConnection.php';
+require './helpers/functions.php';
+require './helpers/checklogin.php';
 require './layouts/headers.php';
 require './layouts/nav.php';
 require './layouts/sideNav.php';
