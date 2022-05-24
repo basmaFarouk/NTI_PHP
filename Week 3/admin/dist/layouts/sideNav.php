@@ -1,3 +1,4 @@
+
 <div id="layoutSidenav">
 <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -11,9 +12,15 @@
                             <div class="sb-sidenav-menu-heading">Interface</div>
 
                             <?php
-                            
+                            //Check user 
+                            if($_SESSION['user']['role_id']==1){
                             $modules=['Roles','Users','Category','Blogs'];
+                            }elseif($_SESSION['user']['role_id']==3){
+                            $modules=['Blogs'];
+                            }
+
                             foreach($modules as $key=>$value){
+                                
                             
                             ?>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts<?php echo $key?>" aria-expanded="false" aria-controls="collapseLayouts">

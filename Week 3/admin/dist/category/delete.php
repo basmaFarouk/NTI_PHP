@@ -1,6 +1,8 @@
 <?php
 require '../helpers/functions.php';
 require '../helpers/dbConnection.php';
+require '../helpers/checklogin.php';
+require '../helpers/checkAdmin.php';
 
 $id=$_GET['id'];
 if(!validate($id,'int')){

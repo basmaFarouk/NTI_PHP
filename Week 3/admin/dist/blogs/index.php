@@ -2,12 +2,22 @@
 
 require '../helpers/dbConnection.php';
 require '../helpers/functions.php';
+require '../helpers/checklogin.php';
 
 ##############################################################################
 ////Logic
+
+$user_id=$_SESSION['user']['id'];
+
+if($_SESSION['user']['role_id']==1){
 $sql = "select blogs.*, category.title as cat_title, users.name from blogs inner join category on blogs.cat_id = category.id
 inner join users on blogs.addedBy = users.id";
 // $sql = "select users.* , roles.title from users inner join roles on users.role_id = roles.id";
+}else{
+    $sql= "select blogs.*, category.title as cat_title, users.name from blogs inner join category on blogs.cat_id = category.id
+    inner join users on blogs.addedBy = users.id where blogs.addedBy = $user_id";
+}
+
 $op = doQuery($sql);
 
 ###############################################################################

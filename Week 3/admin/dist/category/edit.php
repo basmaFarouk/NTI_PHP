@@ -2,6 +2,8 @@
 ###########################
 require '../helpers/dbConnection.php';
 require '../helpers/functions.php';
+require '../helpers/checklogin.php';
+require '../helpers/checkAdmin.php';
 ######################################
 $id=$_GET['id'];
 //Fetch Data

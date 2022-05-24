@@ -17,4 +17,11 @@ function doQuery($sql){
   return mysqli_query($GLOBALS['con'],$sql);
 }
 
+function Select($input){
+  $input="select count(*) as count from ".$input;
+  $input = doQuery($input);
+  $input = mysqli_fetch_assoc($input);
+  return $input;
+}
+
 ?>

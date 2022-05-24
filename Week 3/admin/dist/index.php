@@ -5,6 +5,17 @@ require './helpers/checklogin.php';
 require './layouts/headers.php';
 require './layouts/nav.php';
 require './layouts/sideNav.php';
+$user_count=Select('users');
+$blog_count=Select('blogs');
+$category_count=Select('category');
+$roles_count=Select('roles');
+$user_id=$_SESSION['user']['id'];
+$user_blogs= "select count(*) as count from blogs where blogs.addedBy = $user_id";
+$op=doQuery($user_blogs);
+$count_user_blogs=mysqli_fetch_assoc($op);
+
+// var_dump($blog_count);
+// exit;
 
 ?>
 
@@ -17,43 +28,58 @@ require './layouts/sideNav.php';
             <li class="breadcrumb-item active">Dashboard</li>
         </ol>
         <div class="row">
+            <?php
+        if($_SESSION['user']['role_id']==1){
+            ?>
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-primary text-white mb-4">
-                    <div class="card-body">Primary Card</div>
+                    <div class="card-body">Users Count</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
+                        <p class=" text-white stretched-link"><?php echo $user_count['count']?></p>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-warning text-white mb-4">
-                    <div class="card-body">Warning Card</div>
+                    <div class="card-body">Category Count</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
+                        <p class="text-white stretched-link" href="#"><?php echo $category_count['count']?></p>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-success text-white mb-4">
-                    <div class="card-body">Success Card</div>
+                    <div class="card-body">Roles Count</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
+                        <p class="text-white stretched-link"><?php echo $roles_count['count']?></p>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-danger text-white mb-4">
-                    <div class="card-body">Danger Card</div>
+                    <div class="card-body">Blogs Count</div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
-                        <a class="small text-white stretched-link" href="#">View Details</a>
+                        <p class="text-white stretched-link" ><?php echo $blog_count['count']?></p>
                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                     </div>
                 </div>
             </div>
+            <?php }elseif($_SESSION['user']['role_id']==3){?>
+                <div class="col-xl-3 col-md-6">
+                <div class="card bg-danger text-white mb-4">
+                    <div class="card-body">Blogs Count</div>
+                    <div class="card-footer d-flex align-items-center justify-content-between">
+                        <p class="text-white stretched-link" ><?php echo $count_user_blogs['count']?></p>
+                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    </div>
+                </div>
+            </div>
+            <?php }?>
         </div>
+
         <div class="row">
             <div class="col-xl-6">
                 <div class="card mb-4">

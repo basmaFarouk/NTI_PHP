@@ -2,6 +2,7 @@
 ########################################################################################################
 require '../helpers/dbConnection.php';
 require '../helpers/functions.php';
+require '../helpers/checklogin.php';
 // echo $_SERVER['PHP_SELF']."<br>";
 // echo $_SERVER['SCRIPT_NAME']."<br>";
 // echo $_SERVER['SERVER_NAME']."<br>";

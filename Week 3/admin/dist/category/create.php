@@ -2,6 +2,8 @@
 ###########################
 require '../helpers/dbConnection.php';
 require '../helpers/functions.php';
+require '../helpers/checklogin.php';
+require '../helpers/checkAdmin.php';
 ######################################
 //Logic
 if($_SERVER['REQUEST_METHOD']=="POST"){
