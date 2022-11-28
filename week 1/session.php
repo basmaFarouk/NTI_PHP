@@ -19,6 +19,8 @@
 ?>
 
 <?php
+
+echo "basma";
 function nextChar($char){
     $nextChar= ++$char;
     if(strlen($nextChar)>1){
